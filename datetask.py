@@ -22,8 +22,9 @@ def leap_year(year: int) -> bool:
 def new_date(number: int, gap: int, leap: bool, months_dict: dict[int, list[int, str]], date_list: list[int]) -> str:
     count = 1
     if leap:
-        date_list[2] += 1
+
         if number + gap > 366:
+            date_list[2] += 1
             with_gap = number + gap - 366
             while True:
                 if with_gap < months_dict[count+1][0]:
@@ -42,8 +43,9 @@ def new_date(number: int, gap: int, leap: bool, months_dict: dict[int, list[int,
             date_list[0] = with_gap
             date_list[1] = count
     else:
-        if number + gap > 366:
-            with_gap = number + gap - 366
+        if number + gap > 365:
+            date_list[2] += 1
+            with_gap = number + gap - 365
             while True:
                 if with_gap < months_dict[count + 1][0]:
                     break
